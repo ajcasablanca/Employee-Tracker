@@ -14,7 +14,7 @@ class Database {
 
     findManagers(employeeId) {
         return this.connection.promise().query(
-            "SELECT id, first_name, Last_name FROM employee WHERE id != ?", employeeId
+            "SELECT id, first_name, last_name FROM employee WHERE id != ?", employeeId
         );
     }
 
@@ -30,19 +30,19 @@ class Database {
         return this.connection.promise().query("UPDATE employee SET role_id = ? WHERE id = ?", [roleId, employeeId])
     }
 
-    showRoles() {
-        return this.connection.promise().query("SELECT ids, titles, salaries FROM roles")
+    showAllRoles() {
+        return this.connection.promise().query("SELECT id, title, salary FROM role")
     }
 
     addRole(role) {
-        return this.connection.promise().query("INSERT INTO roles SET ?", role);
+        return this.connection.promise().query("INSERT INTO role SET ?", role);
     }
 
-    showDepartments() {
-        return this.connection.promise().query("SELECT ids, names FROM departments");
+    showAllDepartments() {
+        return this.connection.promise().query("SELECT id, name FROM department");
     }
 
-    addDepartment(department) {
+    addDepartments(department) {
         return this.connection.promise().query("INSERT INTO department SET ?", department);
     }
 
