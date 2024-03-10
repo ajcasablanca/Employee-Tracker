@@ -20,30 +20,30 @@ function loadPrompts() {
                         value: "view_all_employees"
 
                     },
-                    {
-                        name: "View All Employees By Department",
-                        value: "view_all_employees_by_department"
-                    },
-                    {
-                        name: "View All Employees By Manager",
-                        value: "view_all_employees_by_manager"
-                    },
+                    // {
+                    //     name: "View All Employees By Department",
+                    //     value: "view_all_employees_by_department"
+                    // },
+                    // {
+                    //     name: "View All Employees By Manager",
+                    //     value: "view_all_employees_by_manager"
+                    // },
                     {
                         name: "Add Employee",
                         value: "add_employee"
                     },
-                    {
-                        name: "Remove Employee",
-                        value: "remove_employee"
-                    },
+                    // {
+                    //     name: "Remove Employee",
+                    //     value: "remove_employee"
+                    // },
                     {
                         name: "Update Employee Role",
                         value: "update_employee_role"
                     },
-                    {
-                        name: "Update Employee Manager",
-                        value: "update_employee_manager"
-                    },
+                    // {
+                    //     name: "Update Employee Manager",
+                    //     value: "update_employee_manager"
+                    // },
                     {
                         name: "View All Departments",
                         value: "view_all_departments"
@@ -52,10 +52,10 @@ function loadPrompts() {
                         name: "Add Department",
                         value: "add_department"
                     },
-                    {
-                        name: "Remove Department",
-                        value: "remove_department"
-                    },
+                    // {
+                    //     name: "Remove Department",
+                    //     value: "remove_department"
+                    // },
                     {
                         name: "View All Roles",
                         value: "view_all_roles"
@@ -64,10 +64,10 @@ function loadPrompts() {
                         name: "Add Role",
                         value: "add_role"
                     },
-                    {
-                        name: "Remove Role",
-                        value: "remove_role"
-                    },
+                    // {
+                    //     name: "Remove Role",
+                    //     value: "remove_role"
+                    // },
                     {
                         name: "Quit",
                         value: "quit"
@@ -83,42 +83,42 @@ function loadPrompts() {
                 case "view_all_employees":
                     viewAllEmployees();
                     break;
-                case "view_all_employees_by_department":
-                    viewAllEmployeesByDepartment();
-                    break;
-                case "view_all_employees_by_manager":
-                    viewAllEmployeesByManager();
-                    break;
+                // case "view_all_employees_by_department":
+                //     viewAllEmployeesByDepartment();
+                //     break;
+                // case "view_all_employees_by_manager":
+                //     viewAllEmployeesByManager();
+                //     break;
                 case "add_employee":
                     addEmployee();
                     break;
-                case "remove_employee":
-                    removeEmployee();
-                    break;
+                // case "remove_employee":
+                //     removeEmployee();
+                //     break;
                 case "update_employee_role":
                     updateEmployeeRole();
                     break;
-                case "update_employee_manager":
-                    updateEmployeeManager();
-                    break;
+                // case "update_employee_manager":
+                //     updateEmployeeManager();
+                //     break;
                 case "view_all_departments":
                     viewAllDepartments();
                     break;
                 case "add_department":
                     addDepartment();
                     break;
-                case "remove_department":
-                    removeDepartment();
-                    break;
+                // case "remove_department":
+                //     removeDepartment();
+                //     break;
                 case "view_all_roles":
                     viewAllRoles();
                     break;
                 case "add_role":
                     addRole();
                     break;
-                case "remove_role":
-                    removeRole();
-                    break;
+                // case "remove_role":
+                //     removeRole();
+                //     break;
                 case "quit":
                     quit();
                     break;
@@ -139,37 +139,38 @@ function viewAllEmployees() {
 
 }
 
-function viewAllEmployeesByDepartment() {
-    console.log("view all employees by dept")
-    loadPrompts()
-}
+// function viewAllEmployeesByDepartment() {
+//     db.
+//     console.log("view all employees by dept")
+//     loadPrompts()
+// }
 
-function viewAllEmployeesByManager() {
-    console.log("view all employees by manager")
-}
+// function viewAllEmployeesByManager() {
+//     console.log("view all employees by manager")
+// }
 
 function addEmployee() {
 
     prompt([
         {
-            name: "first_names",
+            name: "first_name",
             message: "What is the employee's first name"
         },
         {
-            name: "last_names",
+            name: "last_name",
             message: "What's the employee's last name"
         }
     ])
         .then(res => {
-            let firstName = res.firstName;
-            let lastName = res.lastName;
+            let first_Name = res.first_name;
+            let last_Name = res.last_name;
 
             db.showAllRoles()
                 .then(([rows]) => {
                     let roles = rows;
-                    const roleOptions = roles.map(({ ids, titles }) => ({
-                        name: titles,
-                        value: ids
+                    const roleOptions = roles.map(({ id, title }) => ({
+                        name: title,
+                        value: id
                     }));
 
                     prompt({
@@ -179,14 +180,14 @@ function addEmployee() {
                         choices: roleOptions
                     })
                         .then(res => {
-                            let roleId = res.role_id;
+                            let role_id = res.role_id;
 
                             db.findAllEmployees()
                                 .then(([rows]) => {
                                     let employees = rows;
-                                    const managerChoices = employees.map(({ ids, first_names, last_names }) => ({
-                                        name: `${first_names} ${last_names}`,
-                                        value: ids
+                                    const managerChoices = employees.map(({ id, first_name, last_name }) => ({
+                                        name: `${first_name} ${last_name}`,
+                                        value: id
                                     }));
 
                                     managerChoices.unshift({ name: "None", value: null });
@@ -199,17 +200,17 @@ function addEmployee() {
                                     })
                                         .then(res => {
                                             let employee = {
-                                                manager_ids: res.managerId,
-                                                role_ids: roleId,
-                                                first_names: firstName,
-                                                last_names: lastName
+                                                manager_id: res.manager_id,
+                                                role_id: role_id,
+                                                first_name: first_Name,
+                                                last_name: last_Name
                                             }
 
-                                            db.addEmployee(employee);
+                                            return db.addEmployee(employee);
                                         })
                                         .then(() => {
                                             console.log(
-                                                `Successfully added ${firstName} ${lastName}!`
+                                                `Successfully added ${first_Name} ${last_Name}!`
                                             )
                                             loadPrompts()
                                         }
@@ -222,48 +223,48 @@ function addEmployee() {
         })
 }
 
-function removeEmployee() {
-    console.log("remove employee")
-}
+// function removeEmployee() {
+//     console.log("remove employee")
+// }
 
 function updateEmployeeRole() {
     db.findAllEmployees()
         .then(([rows]) => {
             let employees = rows;
-            const employeeChoices = employees.map(({ ids, first_names, last_names }) => ({
-                name: `${first_names} ${last_names}`,
-                value: ids
+            const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+                name: `${first_name} ${last_name}`,
+                value: id
             }));
 
 
             prompt([
                 {
                     type: "list",
-                    name: "employeeId",
+                    name: "employee_id",
                     message: "Which employee would you like to update?",
                     choices: employeeChoices
                 }
             ])
                 .then(res => {
-                    let employeeId = res.employeeId;
+                    let employee_id = res.employee_id;
                     db.showAllRoles()
                         .then(([rows]) => {
                             let roles = rows;
-                            const roleChoices = roles.map(({ ids, titles }) => ({
-                                name: titles,
-                                value: ids
+                            const roleChoices = roles.map(({ id, title }) => ({
+                                name: title,
+                                value: id
                             }));
 
 
                             prompt([
                                 {
                                     type: "list",
-                                    name: "roleId",
+                                    name: "role_id",
                                     message: "What is the employees new role?",
                                     choices: roleChoices
                                 }
                             ])
-                                .then(res => db.updateRole(employeeId, res.roleId))
+                                .then(res => db.updateEmployeeRole(employee_id, res.role_id))
                                 .then(() => {
                                     console.log("Successfully updated employee's role!")
                                     loadPrompts()
@@ -276,9 +277,9 @@ function updateEmployeeRole() {
 }
 
 
-function updateEmployeeManager() {
-    console.log("update employee manager")
-}
+// function updateEmployeeManager() {
+//     console.log("update employee manager")
+// }
 
 function viewAllDepartments() {
     db.showAllDepartments()
@@ -309,9 +310,9 @@ function addDepartment() {
         })
 }
 
-function removeDepartment() {
-    console.log("remove department")
-}
+// function removeDepartment() {
+//     console.log("remove department")
+// }
 
 function viewAllRoles() {
     db.showAllRoles()
@@ -336,7 +337,7 @@ function addRole() {
             )
 
             ); 
-            console.log(departmentChoices);
+            // console.log(departmentChoices);
             prompt([
                 {
                     name: "title",
@@ -364,9 +365,9 @@ function addRole() {
         })
 }
 
-function removeRole() {
-    console.log("remove role")
-}
+// function removeRole() {
+//     console.log("remove role")
+// }
 
 function quit() {
     process.exit();
