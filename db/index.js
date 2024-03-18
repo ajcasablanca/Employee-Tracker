@@ -22,11 +22,7 @@ class Database {
         return this.connection.promise().query("INSERT INTO employee SET ?", employee);
     }
 
-    // removeEmployee(employeeId) {
-    //     return this.connection.promise().query("DELETE FROM employee WHERE id = ?", employeeId);
-    // }
-
-    updateEmployeeRole(employee_id, role_id) {
+     updateEmployeeRole(employee_id, role_id) {
         return this.connection.promise().query("UPDATE employee SET role_id = ? WHERE id = ?", [role_id, employee_id])
     }
 

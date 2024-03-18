@@ -20,30 +20,17 @@ function loadPrompts() {
                         value: "view_all_employees"
 
                     },
-                    // {
-                    //     name: "View All Employees By Department",
-                    //     value: "view_all_employees_by_department"
-                    // },
-                    // {
-                    //     name: "View All Employees By Manager",
-                    //     value: "view_all_employees_by_manager"
-                    // },
+                    
                     {
                         name: "Add Employee",
                         value: "add_employee"
                     },
-                    // {
-                    //     name: "Remove Employee",
-                    //     value: "remove_employee"
-                    // },
+                   
                     {
                         name: "Update Employee Role",
                         value: "update_employee_role"
                     },
-                    // {
-                    //     name: "Update Employee Manager",
-                    //     value: "update_employee_manager"
-                    // },
+                    
                     {
                         name: "View All Departments",
                         value: "view_all_departments"
@@ -52,10 +39,7 @@ function loadPrompts() {
                         name: "Add Department",
                         value: "add_department"
                     },
-                    // {
-                    //     name: "Remove Department",
-                    //     value: "remove_department"
-                    // },
+                    
                     {
                         name: "View All Roles",
                         value: "view_all_roles"
@@ -64,10 +48,7 @@ function loadPrompts() {
                         name: "Add Role",
                         value: "add_role"
                     },
-                    // {
-                    //     name: "Remove Role",
-                    //     value: "remove_role"
-                    // },
+                    
                     {
                         name: "Quit",
                         value: "quit"
@@ -83,42 +64,29 @@ function loadPrompts() {
                 case "view_all_employees":
                     viewAllEmployees();
                     break;
-                // case "view_all_employees_by_department":
-                //     viewAllEmployeesByDepartment();
-                //     break;
-                // case "view_all_employees_by_manager":
-                //     viewAllEmployeesByManager();
-                //     break;
+
                 case "add_employee":
                     addEmployee();
                     break;
-                // case "remove_employee":
-                //     removeEmployee();
-                //     break;
+
                 case "update_employee_role":
                     updateEmployeeRole();
                     break;
-                // case "update_employee_manager":
-                //     updateEmployeeManager();
-                //     break;
+
                 case "view_all_departments":
                     viewAllDepartments();
                     break;
                 case "add_department":
                     addDepartment();
                     break;
-                // case "remove_department":
-                //     removeDepartment();
-                //     break;
+
                 case "view_all_roles":
                     viewAllRoles();
                     break;
                 case "add_role":
                     addRole();
                     break;
-                // case "remove_role":
-                //     removeRole();
-                //     break;
+
                 case "quit":
                     quit();
                     break;
@@ -139,15 +107,7 @@ function viewAllEmployees() {
 
 }
 
-// function viewAllEmployeesByDepartment() {
-//     db.
-//     console.log("view all employees by dept")
-//     loadPrompts()
-// }
 
-// function viewAllEmployeesByManager() {
-//     console.log("view all employees by manager")
-// }
 
 function addEmployee() {
 
@@ -223,9 +183,7 @@ function addEmployee() {
         })
 }
 
-// function removeEmployee() {
-//     console.log("remove employee")
-// }
+
 
 function updateEmployeeRole() {
     db.findAllEmployees()
@@ -277,10 +235,6 @@ function updateEmployeeRole() {
 }
 
 
-// function updateEmployeeManager() {
-//     console.log("update employee manager")
-// }
-
 function viewAllDepartments() {
     db.showAllDepartments()
         .then(([rows]) => {
@@ -310,9 +264,7 @@ function addDepartment() {
         })
 }
 
-// function removeDepartment() {
-//     console.log("remove department")
-// }
+
 
 function viewAllRoles() {
     db.showAllRoles()
@@ -336,7 +288,7 @@ function addRole() {
 
             )
 
-            ); 
+            );
             // console.log(departmentChoices);
             prompt([
                 {
@@ -365,9 +317,7 @@ function addRole() {
         })
 }
 
-// function removeRole() {
-//     console.log("remove role")
-// }
+
 
 function quit() {
     process.exit();
